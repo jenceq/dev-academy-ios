@@ -33,7 +33,7 @@ enum PossibleKind: RawRepresentable {
         
     }
     
-    var rawValue: String{ //Read-only computer property
+    var rawValue: String{ //Read-only computed property
 
             switch self{
                 case .kind(let neco):
@@ -76,7 +76,11 @@ class DataService{
     var data : Result<Features, Error>?
 
     func fetchData(closure: (_ data: Result<Features, Error>) -> (Void) ){
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] timer in
+        if let data = data{
+            closure(data)
+            return
+        }
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] _ in
             
             self?.data = .success(DataService.mockData)
 
