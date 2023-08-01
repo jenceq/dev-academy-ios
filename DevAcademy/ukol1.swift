@@ -53,23 +53,28 @@ struct Properties {
     let obrId1: URL
     let druh: PossibleKind
     let nazev: String
+
+
     
 }
 struct Point{
     let latitude: Double
     let longitude: Double
 }
+
 struct Feature: Equatable{
     static func == (lhs: Feature, rhs: Feature) -> Bool{
         lhs.properties.ogcFid == rhs.properties.ogcFid
     }
+
+struct Feature{
+
     let geometry: Point
     let properties: Properties
 }
 struct Features{
     let features: [Feature]
-    
-    
+
 }
 extension Features {
     static let mock: Features = Features(
@@ -211,6 +216,7 @@ extension Features {
             )
         ]
     )
+
 }
 	
 class DataService{
@@ -221,22 +227,29 @@ class DataService{
     static var shared : DataService = DataService()
     var data : Result<Features, Error>?
 
+
     func fetchData(closure: @escaping (Result<Features, Error>) -> (Void) ){
+
         if let data = data{
             closure(data)
             return
         }
         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] _ in
+
             let data = DataService.mockData
             self?.data = .success(data)
             closure(.success(data))
         }
         
+
     }
     
 }
 extension DataService {
+
     private static let mockData = Features.mock
+
+
 }
 
 
