@@ -4,7 +4,13 @@ import SwiftUI
 struct DevAcademyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PlacesScene()
         }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider{
+    static var previews: some View{
+        ContentView()
     }
 }
