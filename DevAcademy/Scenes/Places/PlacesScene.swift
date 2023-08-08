@@ -1,56 +1,66 @@
-//
-//  PlacesScene.swift
-//  DevAcademy
-//
-//  Created by To je jedno on 25.07.2023.
-//
-
 import SwiftUI
-	
+import ActivityIndicatorView
 struct PlacesScene: View {
     @State var features: [Feature] = []
+    @State var showFavorites = false
+
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             Group {
+
                 if !features.isEmpty{
                     List(features, id: \.properties.ogcFid){ feature in
-                        PlacesRow(feature: feature)
-                            .onTapGesture{
-                                onFeatureTapped(feature: feature)
-                            }
+                        NavigationLink(destination: PlacesDetail(feature: feature)) {
+                            PlacesRow(feature: feature)
+                            
+                            
+                                
+                        
+                        }
+
                     }
-                    .animation(.default, value: features)
-                    
                     .listStyle(.plain)
-                    
                 } else {
-                    ProgressView()
+                    ActivityIndicatorView(isVisible: .constant(true), type: .growingCircle)
+                }
+            }
+            .navigationTitle("Kultůrmapa")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button("Oblíbené") {
+                        showFavorites = true
+                    }
                 }
                 
             }
-            .navigationTitle("Kultůrmapa")
         }
         .onAppear(perform: fetch)
+        .sheet(isPresented: $showFavorites) {
+            Text("Hello world")
+           
+            .presentationDragIndicator(.visible)
+            .presentationDetents([.medium, .large])
+        }
+        .navigationBarTitleDisplayMode(.inline)
     }
-    func onFeatureTapped(feature: Feature){
-        features.removeAll(where: { $0.properties.ogcFid == feature.properties.ogcFid})
+
+    func tapped(on feature: Feature) {
     }
-    func fetch(){
-        DataService.shared.fetchData{ result in
+
+    func fetch() {
+        DataService.shared.fetchData { result in
             switch result {
             case .success(let features):
                 self.features = features.features
             case .failure(let error):
                 print(error)
             }
-            
         }
-        
     }
 }
 
 struct PlacesScene_Previews: PreviewProvider {
     static var previews: some View {
-        PlacesScene(features: Features.mock.features)
+        PlacesScene()
     }
 }

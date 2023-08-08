@@ -66,9 +66,6 @@ struct Feature: Equatable{
     static func == (lhs: Feature, rhs: Feature) -> Bool{
         lhs.properties.ogcFid == rhs.properties.ogcFid
     }
-
-struct Feature{
-
     let geometry: Point
     let properties: Properties
 }
