@@ -1,21 +1,15 @@
 import SwiftUI
 import ActivityIndicatorView
 struct PlacesScene: View {
-    @State var features: [Feature] = []
-    @State var showFavorites = false
-
+    @EnvironmentObject private var coordinator: Coordinator
+    let state = SceneStateView()
     var body: some View {
         NavigationStack {
             Group {
-
-                if !features.isEmpty{
-                    List(features, id: \.properties.ogcFid){ feature in
-                        NavigationLink(destination: PlacesDetail(feature: feature)) {
+                if state.DataNonEmpty{
+                    List(state.features, id: \.properties.ogcFid){ feature in
+                        NavigationLink(destination: coordinator.PlacesDetailScene(with: feature)) {
                             PlacesRow(feature: feature)
-                            
-                            
-                                
-                        
                         }
 
                     }
@@ -27,15 +21,13 @@ struct PlacesScene: View {
             .navigationTitle("Kultůrmapa")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing){
-                    Button("Oblíbené") {
-                        showFavorites = true
-                    }
+                    Button("Oblíbené", action: state.FavoritesPressed)
                 }
                 
             }
         }
-        .onAppear(perform: fetch)
-        .sheet(isPresented: $showFavorites) {
+        .onAppear(perform: state.fetch)
+        .sheet(isPresented: state.$showFavorites) {
             Text("Hello world")
            
             .presentationDragIndicator(.visible)
@@ -44,23 +36,11 @@ struct PlacesScene: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
-    func tapped(on feature: Feature) {
-    }
-
-    func fetch() {
-        DataService.shared.fetchData { result in
-            switch result {
-            case .success(let features):
-                self.features = features.features
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
+   
 }
 
-struct PlacesScene_Previews: PreviewProvider {
-    static var previews: some View {
-        PlacesScene()
-    }
-}
+//struct PlacesScene_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PlacesScene()
+//    }
+//}

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct PlacesDetail: View {
-    let feature: Feature
+    let state: PlacesDetailStateView
     var body: some View {
     
         HStack(alignment: .top){
-                AsyncImage(url: feature.properties.obrId1){
+            AsyncImage(url: state.ImageUrl){
                     image in
                     image
                         .resizable()
@@ -24,22 +24,18 @@ struct PlacesDetail: View {
                     ProgressView()
                 }
             VStack(spacing: 200){
-                    Text(feature.properties.nazev)
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .lineLimit(1)
-                    Text(feature.properties.druh.rawValue)
-                        .foregroundColor(.secondary)
-                        .font(.subheadline)
-                        
-                }
+                Text(state.placeTitle)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .lineLimit(1)
+            }
            
             }
         }
 }
 
-struct PlacesDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        PlacesDetail(feature: Features.mock.features[0])
-    }
-}
+//struct PlacesDetail_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PlacesDetail(feature: Features.mock.features[0])
+//    }
+//}
