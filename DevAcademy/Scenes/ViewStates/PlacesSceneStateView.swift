@@ -21,7 +21,7 @@ struct SceneStateView: DynamicProperty{
     func FavoritesPressed(){
         showFavorites = true
     }
-    func fetch(){
-        placesObject.fetch()
+    func fetchPlaces() async{
+        await placesObject.fetchPlaces()
     }
 }

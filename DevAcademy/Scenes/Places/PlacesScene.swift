@@ -7,7 +7,7 @@ struct PlacesScene: View {
         NavigationStack {
             Group {
                 if state.DataNonEmpty{
-                    List(state.features, id: \.properties.ogcFid){ feature in
+                    List(state.features, id: \.attributes.ogcFid){ feature in
                         NavigationLink(destination: coordinator.PlacesDetailScene(with: feature)) {
                             PlacesRow(feature: feature)
                         }
@@ -26,7 +26,9 @@ struct PlacesScene: View {
                 
             }
         }
-        .onAppear(perform: state.fetch)
+        .task{
+            await state.fetchPlaces()
+        }
         .sheet(isPresented: state.$showFavorites) {
             Text("Hello world")
            

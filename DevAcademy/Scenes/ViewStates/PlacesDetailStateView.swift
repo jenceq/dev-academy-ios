@@ -14,14 +14,14 @@ struct PlacesDetailStateView: DynamicProperty{
     init(feature: Feature){
         self.feature = feature
     }
-    var ImageUrl: URL{
-        feature.properties.obrId1
+    var ImageUrl: URL?{
+        feature.attributes.imageURL
     }
     var placeTitle: String{
-        feature.properties.nazev
+        feature.attributes.name
     }
     var placeType: PossibleKind{
-        feature.properties.druh
+        feature.attributes.type
     }
     
 }

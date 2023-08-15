@@ -9,16 +9,17 @@ import Foundation
 final class PlacesObservableObject: ObservableObject {
     @Published var feature: [Feature] = []
     
-    private let dataService: DataService = DataService.shared
-    func fetch() {
-        dataService.fetchData { result in
-            switch result {
-            case .success(let features):
-                self.feature = features.features
-            case .failure(let error):
-                print(error)
-            }
+    private let placesService: PlacesService
+    init(placesService: PlacesService){
+        self.placesService = placesService
+    }
+    @MainActor
+    func fetchPlaces() async{
+        do{
+            let loadedPlaces = try await placesService.places()
+            self.feature = loadedPlaces.features
+        } catch{
+            print(error)
         }
     }
-    
 }
