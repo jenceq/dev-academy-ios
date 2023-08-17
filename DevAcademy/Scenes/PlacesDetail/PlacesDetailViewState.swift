@@ -1,5 +1,5 @@
 //
-//  PlacesDetailStateView.swift
+//  PlacesDetailViewState.swift
 //  DevAcademy
 //
 //  Created by To je jedno on 08.08.2023.
@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-struct PlacesDetailStateView: DynamicProperty{
-    let feature: Feature
+struct PlacesDetailViewState: DynamicProperty{
+    private let feature: Feature
     
     init(feature: Feature){
         self.feature = feature
     }
-    var ImageUrl: URL?{
+    var imageUrl: URL?{
         feature.attributes.imageURL
     }
     var placeTitle: String{

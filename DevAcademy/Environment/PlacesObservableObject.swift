@@ -7,7 +7,7 @@
 
 import Foundation
 final class PlacesObservableObject: ObservableObject {
-    @Published var feature: [Feature] = []
+    @Published var features: [Feature] = []
     
     private let placesService: PlacesService
     init(placesService: PlacesService){
@@ -17,7 +17,7 @@ final class PlacesObservableObject: ObservableObject {
     func fetchPlaces() async{
         do{
             let loadedPlaces = try await placesService.places()
-            self.feature = loadedPlaces.features
+            self.features = loadedPlaces.features
         } catch{
             print(error)
         }

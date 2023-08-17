@@ -13,11 +13,11 @@ final class Coordinator: ObservableObject{
         PlacesScene()
         
     }
-    func PlacesDetailScene(with feature: Feature) -> some View{
-        PlacesDetail(state: PlacesDetailStateView(feature: feature))
+    func placesDetailScene(with feature: Feature) -> some View{
+        PlacesDetail(state: PlacesDetailViewState(feature: feature))
     }
     
-    var FavoritesScene: some View{
+    var favoritesScene: some View{
         Text("Nic")
     }
 }
