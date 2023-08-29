@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct PlacesDetail: View {
-    let state: PlacesDetailStateView
+    let state: PlacesDetailViewState
     var body: some View {
     
-        HStack(alignment: .top){
-            AsyncImage(url: state.ImageUrl){
+        HStack(alignment: .top) {
+            AsyncImage(url: state.imageUrl) {
                     image in
                     image
                         .resizable()
@@ -23,7 +23,7 @@ struct PlacesDetail: View {
                 } placeholder: {
                     ProgressView()
                 }
-            VStack(spacing: 200){
+            VStack(spacing: 200) {
                 Text(state.placeTitle)
                     .font(.title2)
                     .fontWeight(.semibold)
