@@ -6,13 +6,13 @@
 //
 
 import Foundation
-struct Properties: Decodable{
+struct Properties: Decodable {
     let ogcFid: Int
     let imageURL: URL?
     let type: PossibleKind
     let name: String
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case ogcFid = "ogc_fid"
         case imageURL = "obr_id1"
         case type = "druh"

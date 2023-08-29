@@ -6,10 +6,10 @@
 //
 
 import Foundation
-struct Point: Decodable{
+struct Point: Decodable {
     let latitude: Double
     let longitude: Double
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case latitude = "x"
         case longitude = "y"
     }

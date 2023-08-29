@@ -7,20 +7,20 @@
 
 import Foundation
 import SwiftUI
-struct SceneViewState: DynamicProperty{
+struct SceneViewState: DynamicProperty {
     @EnvironmentObject private var placesObject: PlacesObservableObject
     @State var showFavorites = false
     
-    var features: [Feature]{
+    var features: [Feature] {
         placesObject.features
     }
-    var dataNonEmpty: Bool{
+    var dataNonEmpty: Bool {
         !features.isEmpty
     }
-    func favoritesPressed(){
+    func favoritesPressed() {
         showFavorites = true
     }
-    func fetchPlaces() async{
+    func fetchPlaces() async {
         await placesObject.fetchPlaces()
     }
 }

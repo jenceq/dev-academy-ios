@@ -10,15 +10,15 @@ final class PlacesObservableObject: ObservableObject {
     @Published var features: [Feature] = []
     
     private let placesService: PlacesService
-    init(placesService: PlacesService){
+    init(placesService: PlacesService) {
         self.placesService = placesService
     }
     @MainActor
-    func fetchPlaces() async{
-        do{
+    func fetchPlaces() async {
+        do {
             let loadedPlaces = try await placesService.places()
             self.features = loadedPlaces.features
-        } catch{
+        } catch {
             print(error)
         }
     }

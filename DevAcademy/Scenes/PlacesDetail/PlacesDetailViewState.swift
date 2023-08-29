@@ -8,19 +8,19 @@
 import Foundation
 import SwiftUI
 
-struct PlacesDetailViewState: DynamicProperty{
+struct PlacesDetailViewState: DynamicProperty {
     private let feature: Feature
     
-    init(feature: Feature){
+    init(feature: Feature) {
         self.feature = feature
     }
-    var imageUrl: URL?{
+    var imageUrl: URL? {
         feature.attributes.imageURL
     }
-    var placeTitle: String{
+    var placeTitle: String {
         feature.attributes.name
     }
-    var placeType: PossibleKind{
+    var placeType: PossibleKind {
         feature.attributes.type
     }
     

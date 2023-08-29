@@ -6,8 +6,8 @@ struct PlacesScene: View {
     var body: some View {
         NavigationStack {
             Group {
-                if state.dataNonEmpty{
-                    List(state.features, id: \.attributes.ogcFid){ feature in
+                if state.dataNonEmpty {
+                    List(state.features, id: \.attributes.ogcFid) { feature in
                         NavigationLink(destination: coordinator.placesDetailScene(with: feature)) {
                             PlacesRow(feature: feature)
                         }
@@ -20,13 +20,13 @@ struct PlacesScene: View {
             }
             .navigationTitle("Kultůrmapa")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing){
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Oblíbené", action: state.favoritesPressed)
                 }
                 
             }
         }
-        .task{
+        .task {
             await state.fetchPlaces()
         }
         .sheet(isPresented: state.$showFavorites) {

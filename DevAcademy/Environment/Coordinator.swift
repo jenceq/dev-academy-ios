@@ -8,16 +8,16 @@
 import Foundation
 import SwiftUI
 
-final class Coordinator: ObservableObject{
-    var placesScene: some View{
+final class Coordinator: ObservableObject {
+    var placesScene: some View {
         PlacesScene()
         
     }
-    func placesDetailScene(with feature: Feature) -> some View{
+    func placesDetailScene(with feature: Feature) -> some View {
         PlacesDetail(state: PlacesDetailViewState(feature: feature))
     }
     
-    var favoritesScene: some View{
+    var favoritesScene: some View {
         Text("Nic")
     }
 }

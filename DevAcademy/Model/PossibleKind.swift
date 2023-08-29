@@ -8,7 +8,7 @@
 import Foundation
 enum PossibleKind: RawRepresentable, Decodable {
     init?(rawValue: String) {
-        guard let kind = Kind(rawValue: rawValue) else{
+        guard let kind = Kind(rawValue: rawValue) else {
             self = .unknown(rawValue)
             return
         }
@@ -16,9 +16,9 @@ enum PossibleKind: RawRepresentable, Decodable {
         
     }
     
-    var rawValue: String{ //Read-only computed property
+    var rawValue: String { //Read-only computed property
 
-            switch self{
+            switch self {
                 case .kind(let neco):
                     return neco.rawValue
                 case .unknown(let string):

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Features: Decodable{
+struct Features: Decodable {
     let features: [Feature]
 }
 extension Features {
