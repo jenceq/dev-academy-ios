@@ -4,13 +4,11 @@ import SwiftUI
 struct DevAcademyApp: App {
     var body: some Scene {
         WindowGroup {
-            PlacesScene()
+            RootView()
+                .environmentObject(PlacesObservableObject(placesService: ProductionPlacesService()))
+                .environmentObject(Coordinator())
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider{
-    static var previews: some View{
-        ContentView()
-    }
-}
+

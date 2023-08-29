@@ -1,21 +1,15 @@
 import SwiftUI
 import ActivityIndicatorView
 struct PlacesScene: View {
-    @State var features: [Feature] = []
-    @State var showFavorites = false
-
+    @EnvironmentObject private var coordinator: Coordinator
+    let state = SceneViewState()
     var body: some View {
         NavigationStack {
             Group {
-
-                if !features.isEmpty{
-                    List(features, id: \.properties.ogcFid){ feature in
-                        NavigationLink(destination: PlacesDetail(feature: feature)) {
+                if state.dataNonEmpty {
+                    List(state.features, id: \.attributes.ogcFid) { feature in
+                        NavigationLink(destination: coordinator.placesDetailScene(with: feature)) {
                             PlacesRow(feature: feature)
-                            
-                            
-                                
-                        
                         }
 
                     }
@@ -26,41 +20,28 @@ struct PlacesScene: View {
             }
             .navigationTitle("Kultůrmapa")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button("Oblíbené") {
-                        showFavorites = true
-                    }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Oblíbené", action: state.favoritesPressed)
                 }
                 
             }
         }
-        .onAppear(perform: fetch)
-        .sheet(isPresented: $showFavorites) {
-            Text("Hello world")
-           
+        .task {
+            await state.fetchPlaces()
+        }
+        .sheet(isPresented: state.$showFavorites) {
+            coordinator.favoritesScene
             .presentationDragIndicator(.visible)
             .presentationDetents([.medium, .large])
         }
         .navigationBarTitleDisplayMode(.inline)
     }
 
-    func tapped(on feature: Feature) {
-    }
-
-    func fetch() {
-        DataService.shared.fetchData { result in
-            switch result {
-            case .success(let features):
-                self.features = features.features
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
+   
 }
 
-struct PlacesScene_Previews: PreviewProvider {
-    static var previews: some View {
-        PlacesScene()
-    }
-}
+//struct PlacesScene_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PlacesScene()
+//    }
+//}

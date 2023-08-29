@@ -11,8 +11,8 @@ import SwiftUI
 struct PlacesRow: View {
     let feature: Feature
     var body: some View {
-        HStack{
-            AsyncImage(url: feature.properties.obrId1){
+        HStack {
+            AsyncImage(url: feature.attributes.imageURL){
                 image in
                 image
                     .resizable()
@@ -23,12 +23,12 @@ struct PlacesRow: View {
             } placeholder: {
                 ProgressView()
             }
-            VStack(alignment: .leading){
-                Text(feature.properties.nazev)
+            VStack(alignment: .leading) {
+                Text(feature.attributes.name)
                     .font(.title2)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                Text(feature.properties.druh.rawValue)
+                Text(feature.attributes.type.rawValue)
                     .foregroundColor(.secondary)
                     .font(.subheadline)
             }
