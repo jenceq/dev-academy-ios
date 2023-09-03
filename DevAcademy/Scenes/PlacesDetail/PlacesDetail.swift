@@ -9,20 +9,24 @@ import SwiftUI
 
 struct PlacesDetail: View {
     let state: PlacesDetailViewState
+    
     var body: some View {
     
         HStack(alignment: .top) {
-            AsyncImage(url: state.imageUrl) {
-                    image in
+            if let imagePath = state.imageUrl {
+                StoredAsyncImage(url: imagePath) { image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 660)
+                        .frame(width: 60, height: 60)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .shadow(radius: 4)
                 } placeholder: {
                     ProgressView()
                 }
+            } else {
+
+            }
             VStack(spacing: 200) {
                 Text(state.placeTitle)
                     .font(.title2)

@@ -12,17 +12,20 @@ struct PlacesRow: View {
     let feature: Feature
     var body: some View {
         HStack {
-            AsyncImage(url: feature.attributes.imageURL){
-                image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 60, height: 60)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .shadow(radius: 4)
-            } placeholder: {
-                ProgressView()
-            }
+            if let imagePath = feature.attributes.imageURL {
+                            StoredAsyncImage(url: imagePath) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 60, height: 60)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    .shadow(radius: 4)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                        } else {
+
+                        }
             VStack(alignment: .leading) {
                 Text(feature.attributes.name)
                     .font(.title2)
