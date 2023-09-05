@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct PlacesDetailViewState: DynamicProperty {
+    @EnvironmentObject private var placesObject: PlacesObservableObject
+   
     private let feature: Feature
     
     init(feature: Feature) {
@@ -23,5 +25,15 @@ struct PlacesDetailViewState: DynamicProperty {
     var placeType: PossibleKind {
         feature.attributes.type
     }
+    var isFavourite: Binding<Bool> {
+        .init {
+            placesObject.favouritePlaces?.contains(feature.attributes.ogcFid) ?? false
+        } set: { newValue in
+            placesObject.setFavs(feature: feature, favourite: newValue)
+        }
+    }
+
+    
+    
     
 }

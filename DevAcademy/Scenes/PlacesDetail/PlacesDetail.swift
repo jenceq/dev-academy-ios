@@ -35,11 +35,23 @@ struct PlacesDetail: View {
             }
            
             }
+            .toolbar {
+                ToolbarItemGroup(placement: .primaryAction) {
+                    Button {
+                        state.isFavourite.wrappedValue.toggle()
+                    } label: {
+                        Image(systemName: state.isFavourite.wrappedValue ? "heart.fill" : "heart")
+                            .foregroundColor(Color.green)
+                        
+                    }
+                }
+            }
+        
         }
 }
 
-//struct PlacesDetail_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlacesDetail(feature: Features.mock.features[0])
-//    }
-//}
+struct PlacesDetail_Previews: PreviewProvider {
+    static var previews: some View {
+        PlacesDetail(state: PlacesDetailViewState(feature: Features.mock.features[0]))
+    }
+}
