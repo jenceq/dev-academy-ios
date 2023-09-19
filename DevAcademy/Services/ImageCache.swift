@@ -59,11 +59,6 @@ private class ImageStorage {
     /// - Returns: Image if exists.
     func loadImage(for url: URL) -> Image? {
         let hashedURL = hash(of: url)
-        var contents: [String] = try! FileManager.default.contentsOfDirectory(atPath: defaultPath.path(percentEncoded: false))
-
-        if !contents.contains(hashedURL) {
-            return nil
-        }
         let data = try? Data(contentsOf: defaultPath.appendingPathComponent(hashedURL))
         guard let data = data else { return nil }
         guard let uiimage = UIImage(data: data) else { return nil }
@@ -140,12 +135,13 @@ struct StoredAsyncImage<I: View, P: View>: View {
             return
         }
         do {
-            let (uiimage, _) = try await performURLFetch()
+            let (uiimage, image) = try await performURLFetch()
             ImageStorage.shared.update(image: uiimage, at: url)
+            self.image = image
         } catch {
             return
         }
-        self.image = image
+        
     }
 
     /// The body should only show one of either states:
