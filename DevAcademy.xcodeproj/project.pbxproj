@@ -18,6 +18,7 @@
 		CA9AB84A2A8DF7310004379E /* PossibleKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB8492A8DF7310004379E /* PossibleKind.swift */; };
 		CA9AB84C2A8DF7750004379E /* Kind.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB84B2A8DF7750004379E /* Kind.swift */; };
 		CA9AB8502AA4CC4A0004379E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB84F2AA4CC4A0004379E /* ImageCache.swift */; };
+		CA9AB8542AA7621C0004379E /* UserLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB8532AA7621C0004379E /* UserLocationService.swift */; };
 		CAEC9D322A798FCC00B2DDF6 /* PlacesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC9D302A798FCC00B2DDF6 /* PlacesRow.swift */; };
 		CAEC9D332A798FCC00B2DDF6 /* PlacesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC9D312A798FCC00B2DDF6 /* PlacesScene.swift */; };
 		CAEC9D382A798FFD00B2DDF6 /* PlacesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC9D362A798FFD00B2DDF6 /* PlacesRow.swift */; };
@@ -44,6 +45,7 @@
 		CA9AB8492A8DF7310004379E /* PossibleKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleKind.swift; sourceTree = "<group>"; };
 		CA9AB84B2A8DF7750004379E /* Kind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kind.swift; sourceTree = "<group>"; };
 		CA9AB84F2AA4CC4A0004379E /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		CA9AB8532AA7621C0004379E /* UserLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
 		CAEC9D302A798FCC00B2DDF6 /* PlacesRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesRow.swift; sourceTree = "<group>"; };
 		CAEC9D312A798FCC00B2DDF6 /* PlacesScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesScene.swift; sourceTree = "<group>"; };
 		CAEC9D362A798FFD00B2DDF6 /* PlacesRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesRow.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				CA9AB83D2A8BB9030004379E /* PlacesService.swift */,
 				CA9AB84F2AA4CC4A0004379E /* ImageCache.swift */,
+				CA9AB8532AA7621C0004379E /* UserLocationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA9AB8482A8DF70B0004379E /* Properties.swift in Sources */,
+				CA9AB8542AA7621C0004379E /* UserLocationService.swift in Sources */,
 				CAEC9D3B2A7991C300B2DDF6 /* PlacesDetail.swift in Sources */,
 				CAFF31622A82760C00349B5A /* PlacesSceneViewState.swift in Sources */,
 				CA9AB8412A8DF6340004379E /* Feature.swift in Sources */,
@@ -410,6 +414,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DevAcademy/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Najít nejbližší místo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -439,6 +444,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DevAcademy/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Najít nejbližší místo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
